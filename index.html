@@ -1250,6 +1250,211 @@
       }
     }
 
+    /* PHONE LAYOUT V2 */
+    @media (max-width: 560px) {
+      .hero h1 { font-size: clamp(42px, 13.7vw, 58px); line-height:.90; letter-spacing:-.06em; overflow-wrap:normal; word-break:normal; }
+      .hero h1 span { white-space:nowrap; }
+      .hero-art { min-height:350px; margin-top:8px; }
+      .moon { width:76%; top:4%; }
+      .hero-character { width:96%; max-width:420px; }
+      .section-heading h2, .app-card h3 { overflow-wrap:normal; word-break:normal; }
+      .section-heading h2 { font-size:clamp(36px,10.8vw,47px); line-height:.96; letter-spacing:-.055em; }
+      .sticker-grid { margin-right:0; padding-right:0; }
+      .sticker { flex:0 0 42vw; max-width:170px; }
+      .app-card h3 { font-size:clamp(36px,10.5vw,48px); line-height:.94; }
+      .terminal-line { grid-template-columns:68px minmax(0,1fr); }
+    }
+
+
+    /* STRICT MOBILE WIDTH LOCK */
+    @media (max-width: 600px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        position: relative;
+      }
+
+      main,
+      footer,
+      section,
+      .nav-wrap,
+      .shell,
+      .hero,
+      .hero-copy,
+      .hero-art,
+      .market-wrap,
+      .market,
+      .culture,
+      .app-panel,
+      .app-card,
+      .terminal-card,
+      .terminal-window,
+      .cta-box,
+      .footer-row {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .shell {
+        width: calc(100% - 24px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .nav-wrap {
+        width: calc(100% - 24px) !important;
+      }
+
+      nav {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .hero {
+        display: block;
+      }
+
+      .hero-copy {
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(39px, 12.2vw, 52px) !important;
+        line-height: .91;
+      }
+
+      .hero h1 span {
+        display: block;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .hero-sub,
+      .section-heading p,
+      .app-card p {
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .contract {
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .contract-code {
+        display: block;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .hero-art {
+        overflow: hidden !important;
+      }
+
+      .moon,
+      .hero-character {
+        max-width: 100% !important;
+      }
+
+      .market {
+        overflow: hidden;
+      }
+
+      .metric,
+      .market-head {
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .metric-value,
+      .metric-sub {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .section-heading {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .section-heading h2,
+      .app-card h3,
+      .cta-box h2 {
+        max-width: 100%;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(34px, 10vw, 44px) !important;
+      }
+
+      .sticker-grid {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        overscroll-behavior-x: contain;
+      }
+
+      .app-panel {
+        display: block;
+      }
+
+      .terminal-card {
+        margin-top: 14px;
+        overflow: hidden;
+      }
+
+      .terminal-window,
+      .terminal-body,
+      .terminal-line,
+      .terminal-value {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .terminal-line {
+        grid-template-columns: 64px minmax(0, 1fr) !important;
+      }
+
+      .terminal-value {
+        overflow-wrap: anywhere;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .footer-row {
+        overflow: hidden;
+      }
+
+      .footer-links {
+        max-width: 100%;
+      }
+
+      .creator-credit {
+        max-width: 100%;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
