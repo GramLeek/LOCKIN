@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090b09" />
+
+  <title>LOCKIN Community — $LOCKIN on TON</title>
+  <meta name="description" content="$LOCKIN on TON. Real app. Real traders. Real degenerates. Community-built around the Lockin trading culture." />
+
+  <meta property="og:title" content="LOCKIN Community — $LOCKIN on TON" />
+  <meta property="og:description" content="Real app. Real traders. Real degenerates." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/hero/hero-character.png" />
+
+  <link rel="icon" type="image/png" href="assets/logo/logo.png" />
+
+  <style>
+    :root {
+      --bg: #070907;
+      --bg-2: #0b0e0b;
+      --panel: rgba(18, 22, 18, 0.78);
+      --panel-2: rgba(12, 15, 12, 0.92);
+      --line: rgba(212, 255, 47, 0.16);
+      --line-strong: rgba(212, 255, 47, 0.32);
+      --green: #d5ff31;
+      --green-2: #a9ff30;
+      --text: #f3f5ef;
+      --muted: #8f978d;
+      --muted-2: #626961;
+      --red: #ff6464;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --radius: 22px;
+      --max: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 82% 13%, rgba(213, 255, 49, 0.10), transparent 28%),
+        radial-gradient(circle at 15% 40%, rgba(213, 255, 49, 0.055), transparent 24%),
+        linear-gradient(180deg, #080a08 0%, #060806 44%, #090b09 100%);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.17;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.28) 0.7px, transparent 0.8px);
+      background-size: 5px 5px;
+      mix-blend-mode: soft-light;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .shell {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px rgba(213,255,49,.78);
+    }
+
+    .nav-wrap {
+      position: relative;
+      z-index: 30;
+      padding-top: 18px;
+    }
+
+    nav {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 9px 12px 9px 16px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      background: rgba(10, 13, 10, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.24);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: max-content;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(213,255,49,.14));
+    }
+
+    .brand-copy {
+      line-height: .92;
+      font-weight: 950;
+      letter-spacing: -.04em;
+      font-size: 18px;
+    }
+
+    .brand-copy small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .18em;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 11px 13px;
+      color: #b8beb5;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      border-radius: 10px;
+      transition: .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.045);
+    }
+
+    .nav-buy {
+      padding: 12px 17px !important;
+      color: #0a0c08 !important;
+      background: var(--green) !important;
+      box-shadow: 0 0 30px rgba(213,255,49,.12);
+    }
+
+    .nav-buy:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 34px rgba(213,255,49,.22);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: 30px;
+      padding: 26px 0 18px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 6%;
+      width: 100vw;
+      height: 620px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(213,255,49,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(213,255,49,.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+      max-width: 670px;
+    }
+
+    .hero h1 {
+      margin: 20px 0 22px;
+      font-size: clamp(62px, 7vw, 108px);
+      line-height: .84;
+      letter-spacing: -.075em;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero h1 .acid {
+      color: var(--green);
+      text-shadow: 0 0 32px rgba(213,255,49,.09);
+    }
+
+    .hero-sub {
+      max-width: 580px;
+      margin: 0 0 22px;
+      color: #a7afa4;
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.55;
+      letter-spacing: -.015em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 13px;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+
+    .btn-primary {
+      color: #090b08;
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 14px 36px rgba(213,255,49,.10);
+    }
+
+    .btn-primary:hover {
+      background: #e0ff5a;
+      border-color: #e0ff5a;
+      box-shadow: 0 18px 42px rgba(213,255,49,.16);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .contract {
+      width: min(100%, 625px);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 10px 10px 14px;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 14px;
+      background: rgba(4,6,4,.48);
+      overflow: hidden;
+    }
+
+    .contract-label {
+      color: var(--muted-2);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .contract-code {
+      color: #c0c7bd;
+      font-size: 11px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy-btn {
+      border: 1px solid rgba(213,255,49,.13);
+      border-radius: 9px;
+      padding: 9px 11px;
+      background: rgba(213,255,49,.06);
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      cursor: pointer;
+    }
+
+    .hero-art {
+      position: relative;
+      align-self: stretch;
+      min-height: 500px;
+      isolation: isolate;
+    }
+
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 4%;
+      width: 74%;
+      height: 15%;
+      transform: translateX(-50%);
+      z-index: -1;
+      background: rgba(213,255,49,.13);
+      filter: blur(70px);
+      border-radius: 50%;
+    }
+
+    .moon {
+      position: absolute;
+      z-index: 0;
+      width: 84%;
+      max-width: 620px;
+      left: 50%;
+      top: -4%;
+      transform: translateX(-50%);
+      object-fit: contain;
+      filter: saturate(.86) brightness(.82) contrast(1.05) drop-shadow(0 0 42px rgba(255,181,45,.08));
+      opacity: .88;
+      animation: moonFloat 9s ease-in-out infinite;
+    }
+
+    .hero-character {
+      position: absolute;
+      z-index: 2;
+      width: 98%;
+      max-width: 680px;
+      left: 49%;
+      bottom: 0;
+      transform: translateX(-50%);
+      object-fit: contain;
+      filter: drop-shadow(0 26px 30px rgba(0,0,0,.42));
+      animation: characterFloat 6.5s ease-in-out infinite;
+    }
+
+    .hero-badge {
+      position: absolute;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid rgba(213,255,49,.16);
+      border-radius: 999px;
+      background: rgba(7,9,7,.76);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #d6ddd2;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .hero-badge i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(213,255,49,.8);
+    }
+
+    .badge-a {
+      top: 21%;
+      left: 0;
+      transform: rotate(-4deg);
+    }
+
+    .badge-b {
+      right: 1%;
+      bottom: 16%;
+      transform: rotate(3deg);
+    }
+
+    @keyframes characterFloat {
+      0%,100% { transform: translateX(-50%) translateY(0) rotate(-.25deg); }
+      50% { transform: translateX(-50%) translateY(-8px) rotate(.25deg); }
+    }
+
+    @keyframes moonFloat {
+      0%,100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.012); }
+    }
+
+    .market-wrap {
+      position: relative;
+      z-index: 8;
+      margin-top: -2px;
+    }
+
+    .market {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(5, 1fr);
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(17,21,17,.94), rgba(10,13,10,.94));
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .market-head,
+    .metric {
+      min-height: 104px;
+      padding: 21px 20px;
+      border-right: 1px solid rgba(255,255,255,.06);
+    }
+
+    .market > :last-child {
+      border-right: none;
+    }
+
+    .market-head {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .live-state {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px rgba(213,255,49,.78);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: .45; }
+      50% { opacity: 1; }
+    }
+
+    .pair-name {
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: -.035em;
+    }
+
+    .metric-label {
+      margin-bottom: 10px;
+      color: var(--muted-2);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      font-size: clamp(18px, 1.8vw, 25px);
+      font-weight: 900;
+      letter-spacing: -.045em;
+      white-space: nowrap;
+    }
+
+    .metric-sub {
+      margin-top: 7px;
+      color: var(--muted-2);
+      font-size: 9px;
+    }
+
+    .positive { color: var(--green); }
+    .negative { color: var(--red); }
+
+    section {
+      position: relative;
+      padding: 96px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      max-width: 820px;
+      margin: 10px 0 0;
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: .94;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+    }
+
+    .section-heading p {
+      max-width: 380px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .culture {
+      overflow: hidden;
+    }
+
+    .culture::before {
+      content: "LOCKIN";
+      position: absolute;
+      right: -1vw;
+      top: 70px;
+      z-index: -1;
+      color: rgba(213,255,49,.025);
+      font-size: min(25vw, 330px);
+      font-weight: 950;
+      letter-spacing: -.09em;
+      line-height: .8;
+    }
+
+    .sticker-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .sticker {
+      position: relative;
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(213,255,49,.075), transparent 48%),
+        rgba(13,16,13,.68);
+      overflow: hidden;
+      transition: .22s ease;
+    }
+
+    .sticker:nth-child(3n+2) {
+      transform: translateY(18px);
+    }
+
+    .sticker:hover {
+      transform: translateY(-5px) scale(1.015);
+      border-color: rgba(213,255,49,.22);
+      box-shadow: 0 18px 50px rgba(0,0,0,.28);
+    }
+
+    .sticker:nth-child(3n+2):hover {
+      transform: translateY(13px) scale(1.015);
+    }
+
+    .sticker::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,.025), transparent 34%);
+    }
+
+    .sticker video {
+      width: 92%;
+      height: 92%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .app-panel {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 14px;
+    }
+
+    .app-card,
+    .terminal-card {
+      min-height: 460px;
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(12,15,12,.82);
+      box-shadow: var(--shadow);
+    }
+
+    .app-card {
+      position: relative;
+      padding: 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 76% 26%, rgba(213,255,49,.12), transparent 32%),
+        linear-gradient(155deg, rgba(20,25,20,.96), rgba(8,11,8,.98));
+    }
+
+    .app-card::before {
+      content: "";
+      position: absolute;
+      right: -100px;
+      bottom: -100px;
+      width: 360px;
+      height: 360px;
+      border: 1px solid rgba(213,255,49,.10);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 42px rgba(213,255,49,.02),
+        0 0 0 84px rgba(213,255,49,.015);
+    }
+
+    .app-card h3 {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 16px 0 16px;
+      font-size: clamp(43px, 5vw, 70px);
+      line-height: .92;
+      letter-spacing: -.065em;
+      text-transform: uppercase;
+    }
+
+    .app-card p {
+      position: relative;
+      z-index: 2;
+      max-width: 490px;
+      color: #a5ada2;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .app-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .terminal-card {
+      position: relative;
+      padding: 18px;
+      background:
+        linear-gradient(rgba(213,255,49,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(213,255,49,.03) 1px, transparent 1px),
+        #080b08;
+      background-size: 28px 28px;
+    }
+
+    .terminal-window {
+      height: 100%;
+      border: 1px solid rgba(213,255,49,.11);
+      border-radius: 18px;
+      background: rgba(6,8,6,.87);
+      overflow: hidden;
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.13);
+    }
+
+    .terminal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 24px;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      gap: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(255,255,255,.07);
+    }
+
+    .terminal-line:last-child {
+      border-bottom: none;
+    }
+
+    .terminal-key {
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .terminal-value {
+      color: #aeb6ab;
+    }
+
+    .terminal-value strong {
+      color: var(--text);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .how-card {
+      position: relative;
+      min-height: 280px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 22px;
+      background: rgba(13,16,13,.7);
+      overflow: hidden;
+    }
+
+    .how-num {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+    }
+
+    .how-card h3 {
+      margin: 52px 0 10px;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+    }
+
+    .how-card p {
+      max-width: 320px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .how-card::after {
+      content: attr(data-mark);
+      position: absolute;
+      right: -12px;
+      bottom: -32px;
+      color: rgba(213,255,49,.04);
+      font-size: 138px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .final-cta {
+      padding-top: 35px;
+      padding-bottom: 100px;
+    }
+
+    .cta-box {
+      position: relative;
+      min-height: 370px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 52px 24px;
+      border: 1px solid rgba(213,255,49,.16);
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 110%, rgba(213,255,49,.15), transparent 40%),
+        linear-gradient(180deg, rgba(18,23,18,.93), rgba(8,11,8,.96));
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .45;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(213,255,49,.06) 0 1px, transparent 1.5px);
+      background-size: 14px 14px;
+      mask-image: linear-gradient(90deg, transparent, black 28%, black 72%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 28%, black 72%, transparent);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-box h2 {
+      max-width: 850px;
+      margin: 14px auto 20px;
+      font-size: clamp(54px, 8vw, 105px);
+      line-height: .82;
+      letter-spacing: -.075em;
+      text-transform: uppercase;
+    }
+
+    .cta-box h2 span {
+      color: var(--green);
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    footer {
+      padding: 26px 0 38px;
+      border-top: 1px solid rgba(255,255,255,.055);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-left img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: end;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: #7f877d;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    .disclaimer {
+      margin-top: 14px;
+      color: #545b52;
+      font-size: 9px;
+      line-height: 1.5;
+      text-align: right;
+    }
+
+    .creator-credit {
+      margin-top: 12px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .creator-credit a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 9px 5px 6px;
+      border: 1px solid rgba(213,255,49,.10);
+      border-radius: 999px;
+      background: rgba(213,255,49,.025);
+      color: #6f776d;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .creator-credit a:hover {
+      color: var(--green);
+      border-color: rgba(213,255,49,.22);
+      background: rgba(213,255,49,.05);
+    }
+
+    .creator-credit img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(213,255,49,.30);
+      background: #090b09;
+      box-shadow: 0 0 12px rgba(213,255,49,.08);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 999;
+      transform: translate(-50%, 18px);
+      padding: 12px 16px;
+      border: 1px solid rgba(213,255,49,.18);
+      border-radius: 12px;
+      background: rgba(8,11,8,.92);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+
+
+    .btn-social {
+      min-width: 92px;
+      color: #c7cec4;
+      background: rgba(255,255,255,.022);
+    }
+
+    .btn-social:hover {
+      color: var(--green);
+      border-color: rgba(213,255,49,.20);
+      background: rgba(213,255,49,.045);
+    }
+
+    @media (max-width: 600px) {
+      .hero-actions {
+        grid-template-columns: 1fr 1fr !important;
+      }
+
+      .hero-actions .btn:first-child {
+        grid-column: 1 / -1 !important;
+      }
+
+      .btn-social {
+        min-width: 0;
+      }
+    }
+
+    /* COMPACT LIVE MARKET INSIDE HERO */
+    .hero-market {
+      width: min(100%, 625px);
+      margin: 18px 0 12px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .hero-market-card {
+      min-width: 0;
+      padding: 11px 12px 10px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      background:
+        linear-gradient(180deg, rgba(18,22,18,.72), rgba(8,11,8,.76));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.015);
+    }
+
+    .hero-market-card:first-child {
+      border-color: rgba(213,255,49,.15);
+      background:
+        linear-gradient(180deg, rgba(213,255,49,.055), rgba(8,11,8,.76));
+    }
+
+    .hero-market-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 7px;
+      color: var(--muted-2);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .hero-market-top .live-dot {
+      width: 5px;
+      height: 5px;
+      flex: 0 0 5px;
+    }
+
+    .hero-market-value {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text);
+      font-size: clamp(14px, 1.3vw, 18px);
+      font-weight: 950;
+      letter-spacing: -.035em;
+    }
+
+    .hero-market-card:first-child .hero-market-value {
+      color: var(--green);
+    }
+
+    .hero-market-sub {
+      min-width: 0;
+      margin-top: 4px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted-2);
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .hero-market-status {
+      width: min(100%, 625px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+      color: var(--muted-2);
+      font-size: 8px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero-market-status .pair-name {
+      color: #aeb6ab;
+      font-size: 9px;
+      letter-spacing: .06em;
+    }
+
+    @media (max-width: 760px) {
+      .hero-market {
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+        margin-top: 16px;
+      }
+
+      .hero-market-card {
+        padding: 10px 11px;
+      }
+
+      .hero-market-value {
+        font-size: 15px;
+      }
+
+      .hero-market-status {
+        margin-bottom: 8px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero-market-card {
+        padding: 9px 10px;
+      }
+
+      .hero-market-top {
+        font-size: 7px;
+      }
+
+      .hero-market-value {
+        font-size: 14px;
+      }
+
+      .hero-market-sub {
+        font-size: 7px;
+      }
+    }
+
+
+    /* PRODUCT JOURNEY */
+    .product-section {
+      padding-top: 90px;
+      padding-bottom: 86px;
+    }
+
+    .product-intro {
+      margin-bottom: 30px;
+    }
+
+    .product-intro .section-heading {
+      margin-bottom: 0;
+    }
+
+    .app-experience {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 14px;
+      min-height: 620px;
+    }
+
+    .flow-panel,
+    .screen-panel {
+      border: 1px solid rgba(255,255,255,.075);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(14,18,14,.94), rgba(8,11,8,.96));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .flow-panel {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flow-panel-top {
+      padding: 6px 4px 22px;
+    }
+
+    .flow-kicker {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .flow-panel h3 {
+      margin: 10px 0 10px;
+      font-size: clamp(34px, 3.8vw, 54px);
+      line-height: .92;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+
+    .flow-panel-top p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 430px;
+    }
+
+    .flow-steps {
+      display: grid;
+      gap: 7px;
+      margin-top: 12px;
+    }
+
+    .flow-step {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 14px;
+      color: #8f978d;
+      background: rgba(255,255,255,.018);
+      text-align: left;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .flow-step:hover {
+      border-color: rgba(213,255,49,.16);
+      color: #d8ded5;
+      background: rgba(213,255,49,.035);
+    }
+
+    .flow-step.active {
+      border-color: rgba(213,255,49,.28);
+      color: var(--text);
+      background:
+        linear-gradient(90deg, rgba(213,255,49,.09), rgba(213,255,49,.02));
+      box-shadow: inset 3px 0 0 var(--green);
+    }
+
+    .flow-step-num {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .08em;
+    }
+
+    .flow-step-name {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .flow-step-arrow {
+      color: var(--green);
+      font-size: 13px;
+      opacity: .45;
+    }
+
+    .flow-step.active .flow-step-arrow {
+      opacity: 1;
+    }
+
+    .flow-cta {
+      margin-top: auto;
+      padding-top: 22px;
+    }
+
+    .flow-cta .btn {
+      width: 100%;
+    }
+
+    .screen-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      align-items: center;
+      gap: 28px;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 72% 42%, rgba(213,255,49,.11), transparent 30%),
+        linear-gradient(rgba(213,255,49,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(213,255,49,.025) 1px, transparent 1px),
+        #080b08;
+      background-size: auto, 30px 30px, 30px 30px, auto;
+    }
+
+    .screen-panel::before {
+      content: "LOCKIN";
+      position: absolute;
+      left: 24px;
+      bottom: 4px;
+      color: rgba(213,255,49,.025);
+      font-size: clamp(80px, 11vw, 160px);
+      font-weight: 950;
+      letter-spacing: -.08em;
+      pointer-events: none;
+    }
+
+    .screen-copy {
+      position: relative;
+      z-index: 2;
+      align-self: center;
+    }
+
+    .screen-step {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .screen-copy h4 {
+      margin: 12px 0 12px;
+      font-size: clamp(38px, 4vw, 60px);
+      line-height: .92;
+      letter-spacing: -.06em;
+      text-transform: uppercase;
+    }
+
+    .screen-copy p {
+      margin: 0;
+      max-width: 430px;
+      color: #a0a89d;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .screen-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 9px 11px;
+      border: 1px solid rgba(213,255,49,.12);
+      border-radius: 999px;
+      background: rgba(213,255,49,.045);
+      color: #bac2b6;
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .screen-note i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px rgba(213,255,49,.7);
+    }
+
+    .phone-stage {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      min-width: 0;
+    }
+
+    .phone-frame {
+      position: relative;
+      width: min(100%, 286px);
+      padding: 7px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 36px;
+      background: #020302;
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.48),
+        0 0 0 1px rgba(213,255,49,.045),
+        0 0 60px rgba(213,255,49,.08);
+    }
+
+    .phone-frame::before {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      top: 12px;
+      width: 70px;
+      height: 16px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(0,0,0,.86);
+      pointer-events: none;
+    }
+
+    .phone-frame img {
+      width: 100%;
+      aspect-ratio: 828 / 1792;
+      display: block;
+      object-fit: cover;
+      border-radius: 30px;
+      background: #050705;
+    }
+
+    .feature-rail {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .feature-chip {
+      min-height: 76px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      padding: 14px 15px;
+      border: 1px solid rgba(255,255,255,.065);
+      border-radius: 15px;
+      background: rgba(12,15,12,.72);
+    }
+
+    .feature-chip strong {
+      color: var(--green);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .feature-chip span {
+      color: #8e968b;
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .leaderboard-proof {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 14px;
+      margin-top: 14px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(213,255,49,.08), transparent 34%),
+        rgba(10,13,10,.86);
+    }
+
+    .leaderboard-copy {
+      align-self: center;
+      padding: 34px;
+    }
+
+    .leaderboard-copy h3 {
+      margin: 12px 0 12px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: .92;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+
+    .leaderboard-copy p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .leaderboard-image {
+      min-height: 380px;
+      overflow: hidden;
+      border-left: 1px solid rgba(255,255,255,.06);
+      background: #050705;
+    }
+
+    .leaderboard-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 520px;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    @media (max-width: 980px) {
+      .app-experience {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-panel {
+        min-height: 0;
+      }
+
+      .flow-steps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .flow-step {
+        grid-template-columns: 32px 1fr;
+      }
+
+      .flow-step-arrow {
+        display: none;
+      }
+
+      .flow-cta {
+        margin-top: 18px;
+      }
+
+      .screen-panel {
+        grid-template-columns: 1fr 290px;
+      }
+
+      .feature-rail {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-section {
+        padding-top: 68px;
+        padding-bottom: 66px;
+      }
+
+      .app-experience {
+        min-height: 0;
+      }
+
+      .flow-panel {
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      .flow-panel h3 {
+        font-size: 36px;
+      }
+
+      .flow-steps {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 4px 0 10px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .flow-steps::-webkit-scrollbar {
+        display: none;
+      }
+
+      .flow-step {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 128px;
+        grid-template-columns: auto 1fr;
+        padding: 11px 12px;
+        scroll-snap-align: start;
+      }
+
+      .flow-step-name {
+        font-size: 9px;
+      }
+
+      .flow-cta {
+        padding-top: 12px;
+      }
+
+      .screen-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: 22px 16px;
+      }
+
+      .screen-copy {
+        width: 100%;
+      }
+
+      .screen-copy h4 {
+        font-size: 38px;
+      }
+
+      .screen-copy p {
+        font-size: 13px;
+      }
+
+      .phone-stage {
+        width: 100%;
+      }
+
+      .phone-frame {
+        width: min(78vw, 310px);
+      }
+
+      .feature-rail {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 8px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .feature-rail::-webkit-scrollbar {
+        display: none;
+      }
+
+      .feature-chip {
+        flex: 0 0 155px;
+        scroll-snap-align: start;
+      }
+
+      .leaderboard-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .leaderboard-copy {
+        padding: 24px 20px 10px;
+      }
+
+      .leaderboard-image {
+        min-height: 360px;
+        border-left: 0;
+        border-top: 1px solid rgba(255,255,255,.06);
+      }
+
+      .leaderboard-image img {
+        max-height: 430px;
+      }
+
+      .hero {
+        padding-top: 24px !important;
+        padding-bottom: 8px !important;
+      }
+
+      .hero-art {
+        min-height: 315px !important;
+        margin-top: -4px !important;
+      }
+
+      .moon {
+        width: 72% !important;
+        top: -5% !important;
+      }
+
+      .hero-character {
+        width: 92% !important;
+        bottom: 0 !important;
+      }
+    }
+
+
+    @media (max-width: 1080px) {
+      .nav-links a:not(.nav-buy) {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .market {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .market-head,
+      .metric {
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
+
+      .market > :nth-child(3n) {
+        border-right: none;
+      }
+
+      .sticker-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .app-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-card {
+        min-height: 430px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        width: min(calc(100% - 24px), var(--max));
+      }
+
+      .nav-wrap {
+        padding-top: 10px;
+      }
+
+      nav {
+        min-height: 58px;
+        border-radius: 15px;
+      }
+
+      .brand img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .brand-copy {
+        font-size: 16px;
+      }
+
+      .nav-buy {
+        padding: 10px 13px !important;
+        font-size: 11px !important;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 60px 0 20px;
+      }
+
+      .hero h1 {
+        margin-top: 17px;
+        font-size: clamp(55px, 17vw, 86px);
+      }
+
+      .hero-sub {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-actions .btn:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .contract {
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .contract-code {
+        font-size: 9px;
+      }
+
+      .hero-art {
+        min-height: 510px;
+      }
+
+      .moon {
+        width: 94%;
+        top: 2%;
+      }
+
+      .hero-character {
+        width: 114%;
+        left: 50%;
+      }
+
+      .badge-a {
+        left: 2%;
+        top: 15%;
+      }
+
+      .badge-b {
+        right: 0;
+        bottom: 12%;
+      }
+
+      .market-wrap {
+        margin-top: -10px;
+      }
+
+      .market {
+        grid-template-columns: 1fr 1fr;
+        border-radius: 18px;
+      }
+
+      .market-head,
+      .metric {
+        min-height: 94px;
+        padding: 17px;
+      }
+
+      .market > :nth-child(3n) {
+        border-right: 1px solid rgba(255,255,255,.06);
+      }
+
+      .market > :nth-child(2n) {
+        border-right: none;
+      }
+
+      section {
+        padding: 88px 0;
+      }
+
+      .section-heading {
+        display: block;
+        margin-bottom: 30px;
+      }
+
+      .section-heading p {
+        margin-top: 16px;
+      }
+
+      .sticker-grid {
+        display: flex;
+        gap: 10px;
+        margin-right: -12px;
+        overflow-x: auto;
+        padding: 4px 12px 24px 0;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+      }
+
+      .sticker-grid::-webkit-scrollbar {
+        display: none;
+      }
+
+      .sticker {
+        flex: 0 0 43vw;
+        max-width: 190px;
+        transform: none !important;
+        scroll-snap-align: start;
+      }
+
+      .app-card,
+      .terminal-card {
+        min-height: 0;
+      }
+
+      .app-card {
+        padding: 28px 24px;
+      }
+
+      .app-actions {
+        margin-top: 50px;
+      }
+
+      .terminal-card {
+        padding: 10px;
+      }
+
+      .terminal-body {
+        padding: 18px;
+      }
+
+      .terminal-line {
+        grid-template-columns: 88px 1fr;
+        gap: 12px;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .how-card {
+        min-height: 230px;
+      }
+
+      .how-card h3 {
+        margin-top: 40px;
+      }
+
+      .cta-box {
+        min-height: 330px;
+        padding: 44px 18px;
+      }
+
+      .footer-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+
+      .disclaimer {
+        text-align: left;
+      }
+
+      .creator-credit {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .brand-copy small {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      .hero-art {
+        min-height: 450px;
+      }
+
+      .hero-badge {
+        font-size: 8px;
+      }
+    }
+
+    /* PHONE LAYOUT V2 */
+    @media (max-width: 560px) {
+      .hero h1 { font-size: clamp(42px, 13.7vw, 58px); line-height:.90; letter-spacing:-.06em; overflow-wrap:normal; word-break:normal; }
+      .hero h1 span { white-space:nowrap; }
+      .hero-art { min-height:350px; margin-top:8px; }
+      .moon { width:76%; top:4%; }
+      .hero-character { width:96%; max-width:420px; }
+      .section-heading h2, .app-card h3 { overflow-wrap:normal; word-break:normal; }
+      .section-heading h2 { font-size:clamp(36px,10.8vw,47px); line-height:.96; letter-spacing:-.055em; }
+      .sticker-grid { margin-right:0; padding-right:0; }
+      .sticker { flex:0 0 42vw; max-width:170px; }
+      .app-card h3 { font-size:clamp(36px,10.5vw,48px); line-height:.94; }
+      .terminal-line { grid-template-columns:68px minmax(0,1fr); }
+    }
+
+
+    /* STRICT MOBILE WIDTH LOCK */
+    @media (max-width: 600px) {
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      body {
+        position: relative;
+      }
+
+      main,
+      footer,
+      section,
+      .nav-wrap,
+      .shell,
+      .hero,
+      .hero-copy,
+      .hero-art,
+      .market-wrap,
+      .market,
+      .culture,
+      .app-panel,
+      .app-card,
+      .terminal-card,
+      .terminal-window,
+      .cta-box,
+      .footer-row {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .shell {
+        width: calc(100% - 24px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .nav-wrap {
+        width: calc(100% - 24px) !important;
+      }
+
+      nav {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .hero {
+        display: block;
+      }
+
+      .hero-copy {
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        width: 100%;
+        max-width: 100%;
+        font-size: clamp(39px, 12.2vw, 52px) !important;
+        line-height: .91;
+      }
+
+      .hero h1 span {
+        display: block;
+        white-space: nowrap;
+        max-width: 100%;
+      }
+
+      .hero-sub,
+      .section-heading p,
+      .app-card p {
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .contract {
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .contract-code {
+        display: block;
+        min-width: 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .hero-art {
+        overflow: hidden !important;
+      }
+
+      .moon,
+      .hero-character {
+        max-width: 100% !important;
+      }
+
+      .market {
+        overflow: hidden;
+      }
+
+      .metric,
+      .market-head {
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .metric-value,
+      .metric-sub {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .section-heading {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .section-heading h2,
+      .app-card h3,
+      .cta-box h2 {
+        max-width: 100%;
+        overflow-wrap: normal;
+        word-break: normal;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(34px, 10vw, 44px) !important;
+      }
+
+      .sticker-grid {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        overscroll-behavior-x: contain;
+      }
+
+      .app-panel {
+        display: block;
+      }
+
+      .terminal-card {
+        margin-top: 14px;
+        overflow: hidden;
+      }
+
+      .terminal-window,
+      .terminal-body,
+      .terminal-line,
+      .terminal-value {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .terminal-line {
+        grid-template-columns: 64px minmax(0, 1fr) !important;
+      }
+
+      .terminal-value {
+        overflow-wrap: anywhere;
+      }
+
+      .cta-actions {
+        width: 100%;
+      }
+
+      .footer-row {
+        overflow: hidden;
+      }
+
+      .footer-links {
+        max-width: 100%;
+      }
+
+      .creator-credit {
+        max-width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-wrap shell">
+    <nav>
+      <a class="brand" href="#top" aria-label="LOCKIN home">
+        <img src="assets/logo/logo.png" alt="LOCKIN logo" />
+        <div class="brand-copy">
+          LOCKIN
+          <small>COMMUNITY / TON</small>
+        </div>
+      </a>
+
+      <div class="nav-links">
+        <a href="https://dexscreener.com/ton/eqckj5g4vydzis-1xd13q8kxgzt7-xx_zpbky7sd3j-96xqj" target="_blank" rel="noopener noreferrer">MARKET</a>
+        <a href="#culture">CULTURE</a>
+        <a href="#app">HOW IT WORKS</a>
+        <a href="https://x.com/lockin_comunity" target="_blank" rel="noopener noreferrer">X</a>
+        <a href="https://t.me/lockin_og" target="_blank" rel="noopener noreferrer">TG</a>
+        <a class="nav-buy" href="https://dedust.io/coins/EQAmAb3d7dEP8fMWOf42Jzxu8DyG_fCK9ndfLs1XhjlN5HU9" target="_blank" rel="noopener noreferrer">BUY $LOCKIN</a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="top">
+    <div class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">LOCKED IN ON TON</div>
+
+          <h1>
+            <span>REAL APP.</span>
+            <span>REAL TRADERS.</span>
+            <span class="acid">REAL DEGENS.</span>
+          </h1>
+
+          <p class="hero-sub">
+            $LOCKIN is the community layer around the Lockin trading app.
+            Discover calls, connect your wallet, trade with GRAM — then stay for the meme.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://t.me/tradeonlockinbot" target="_blank" rel="noopener noreferrer">
+              OPEN LOCKIN APP
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="btn" href="https://dedust.io/coins/EQAmAb3d7dEP8fMWOf42Jzxu8DyG_fCK9ndfLs1XhjlN5HU9" target="_blank" rel="noopener noreferrer">BUY $LOCKIN</a>
+
+            <a class="btn" href="https://dexscreener.com/ton/eqckj5g4vydzis-1xd13q8kxgzt7-xx_zpbky7sd3j-96xqj" target="_blank" rel="noopener noreferrer">VIEW CHART</a>
+            <a class="btn btn-social" href="https://t.me/lockin_og" target="_blank" rel="noopener noreferrer" aria-label="Join LOCKIN on Telegram">TELEGRAM</a>
+            <a class="btn btn-social" href="https://x.com/lockin_comunity" target="_blank" rel="noopener noreferrer" aria-label="Follow LOCKIN on X">X</a>
+          </div>
+
+          <div class="hero-market" aria-label="Live LOCKIN market data">
+            <div class="hero-market-card">
+              <div class="hero-market-top"><span class="live-dot"></span><span>Price</span></div>
+              <div class="hero-market-value mono" id="price">—</div>
+              <div class="hero-market-sub">LIVE USD</div>
+            </div>
+
+            <div class="hero-market-card">
+              <div class="hero-market-top">Market cap</div>
+              <div class="hero-market-value mono" id="marketCap">—</div>
+              <div class="hero-market-sub" id="capType">DEX DATA</div>
+            </div>
+
+            <div class="hero-market-card">
+              <div class="hero-market-top">Liquidity</div>
+              <div class="hero-market-value mono" id="liquidity">—</div>
+              <div class="hero-market-sub">USD</div>
+            </div>
+
+            <div class="hero-market-card">
+              <div class="hero-market-top">24H</div>
+              <div class="hero-market-value mono" id="change24">—</div>
+              <div class="hero-market-sub" id="tx24">BUYS / SELLS —</div>
+            </div>
+          </div>
+
+          <div class="hero-market-status mono">
+            <span class="pair-name">$LOCKIN / GRAM</span>
+            <span id="liveStatus">LIVE MARKET</span>
+          </div>
+
+          <div class="contract" title="LOCKIN contract address">
+            <span class="contract-label">CA</span>
+            <code class="contract-code mono">EQAmAb3d7dEP8fMWOf42Jzxu8DyG_fCK9ndfLs1XhjlN5HU9</code>
+            <button class="copy-btn" type="button" data-copy-ca>COPY</button>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="LOCKIN mascot and moon">
+          <img class="moon" src="assets/hero/moon.png" alt="" aria-hidden="true" />
+          <img class="hero-character" src="assets/hero/hero-character.png" alt="LOCKIN mascot" />
+
+          <div class="hero-badge badge-a mono"><i></i> NO SIDELINE MODE</div>
+          <div class="hero-badge badge-b mono"><i></i> STATUS: LOCKED IN</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="product-section" id="app">
+      <div class="shell">
+        <div class="product-intro">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">HOW LOCKIN WORKS</div>
+              <h2>FROM FEED<br />TO TRADE.</h2>
+            </div>
+            <p>
+              Lockin is a social trading mini app inside Telegram. Discover calls, connect your wallet,
+              trade with GRAM and track everything without leaving the flow.
+            </p>
+          </div>
+        </div>
+
+        <div class="app-experience">
+          <div class="flow-panel">
+            <div class="flow-panel-top">
+              <div class="flow-kicker">LOCK IN IN SIX STEPS</div>
+              <h3>USE THE APP.<br />NOT A MANUAL.</h3>
+              <p>Tap through the real Lockin flow. Every screen below comes directly from the Telegram mini app.</p>
+            </div>
+
+            <div class="flow-steps" role="tablist" aria-label="How to use Lockin">
+              <button class="flow-step active" type="button" role="tab"
+                data-step="01" data-title="Discover"
+                data-copy="Browse the social feed, follow calls and see what traders are actually doing."
+                data-note="SOCIAL FEED + LIVE CALLS"
+                data-image="assets/app/feed.png">
+                <span class="flow-step-num mono">01</span><span class="flow-step-name">Discover</span><span class="flow-step-arrow">→</span>
+              </button>
+
+              <button class="flow-step" type="button" role="tab"
+                data-step="02" data-title="Connect"
+                data-copy="Open your Profile and tap Connect Wallet. One connection unlocks portfolio tracking and trading."
+                data-note="PROFILE → CONNECT WALLET"
+                data-image="assets/app/profile.png">
+                <span class="flow-step-num mono">02</span><span class="flow-step-name">Connect</span><span class="flow-step-arrow">→</span>
+              </button>
+
+              <button class="flow-step" type="button" role="tab"
+                data-step="03" data-title="Choose wallet"
+                data-copy="Select Gram Wallet, Tonkeeper or another supported TON Connect wallet."
+                data-note="GRAM WALLET + TON CONNECT"
+                data-image="assets/app/wallet.png">
+                <span class="flow-step-num mono">03</span><span class="flow-step-name">Wallet</span><span class="flow-step-arrow">→</span>
+              </button>
+
+              <button class="flow-step" type="button" role="tab"
+                data-step="04" data-title="Trade"
+                data-copy="Open a token and see price, liquidity, market cap, calls, holders and your position in one place."
+                data-note="CHART + DATA + BUY / SELL"
+                data-image="assets/app/trade.jpeg">
+                <span class="flow-step-num mono">04</span><span class="flow-step-name">Trade</span><span class="flow-step-arrow">→</span>
+              </button>
+
+              <button class="flow-step" type="button" role="tab"
+                data-step="05" data-title="Buy with GRAM"
+                data-copy="Enter the amount in GRAM and confirm the trade. Lockin handles the execution from your TON wallet."
+                data-note="PAY WITH GRAM"
+                data-image="assets/app/buy.png">
+                <span class="flow-step-num mono">05</span><span class="flow-step-name">Buy</span><span class="flow-step-arrow">→</span>
+              </button>
+
+              <button class="flow-step" type="button" role="tab"
+                data-step="06" data-title="Track"
+                data-copy="Your portfolio, trades and PnL live in your profile. Stay locked in and see where you rank."
+                data-note="PORTFOLIO + PNL"
+                data-image="assets/app/portfolio.jpeg">
+                <span class="flow-step-num mono">06</span><span class="flow-step-name">Track</span><span class="flow-step-arrow">→</span>
+              </button>
+            </div>
+
+            <div class="flow-cta">
+              <a class="btn btn-primary" href="https://t.me/tradeonlockinbot" target="_blank" rel="noopener noreferrer">OPEN LOCKIN APP</a>
+            </div>
+          </div>
+
+          <div class="screen-panel">
+            <div class="screen-copy">
+              <div class="screen-step mono" id="screenStep">STEP / 01</div>
+              <h4 id="screenTitle">Discover</h4>
+              <p id="screenCopy">Browse the social feed, follow calls and see what traders are actually doing.</p>
+              <div class="screen-note mono"><i></i><span id="screenNote">SOCIAL FEED + LIVE CALLS</span></div>
+            </div>
+
+            <div class="phone-stage">
+              <div class="phone-frame">
+                <img id="appScreen" src="assets/app/feed.png" alt="Lockin app — Discover" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-rail" aria-label="Lockin features">
+          <div class="feature-chip"><strong>Inside Telegram</strong><span>Social trading without leaving the chat ecosystem.</span></div>
+          <div class="feature-chip"><strong>Pay with GRAM</strong><span>Use GRAM from your connected TON wallet.</span></div>
+          <div class="feature-chip"><strong>Multi-chain</strong><span>One app for multiple supported chains.</span></div>
+          <div class="feature-chip"><strong>Live portfolio</strong><span>Track positions, trades and PnL.</span></div>
+          <div class="feature-chip"><strong>Social layer</strong><span>Calls, follows, rankings and community.</span></div>
+        </div>
+
+        <div class="leaderboard-proof">
+          <div class="leaderboard-copy">
+            <div class="eyebrow">REAL TRADERS</div>
+            <h3>DON'T JUST CALL IT.<br />PROVE IT.</h3>
+            <p>
+              Lockin turns trading into a visible social game: traders, PnL, rankings and activity all live in the same product.
+            </p>
+            <a class="btn" href="https://t.me/tradeonlockinbot" target="_blank" rel="noopener noreferrer">VIEW THE APP</a>
+          </div>
+
+          <div class="leaderboard-image">
+            <img src="assets/app/leaderboard.jpeg" alt="Lockin leaderboard" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="culture" id="culture">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">LOCKIN CULTURE</div>
+            <h2>THE MEME IS<br />THE INTERFACE.</h2>
+          </div>
+          <p>
+            The app brings the utility. The community brings the culture. Twelve animated reasons to stay suspiciously locked in.
+          </p>
+        </div>
+
+        <div class="sticker-grid" aria-label="LOCKIN animated stickers">
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/welcome.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/buy.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/strong-hold.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/lfg-chart.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/ath.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/fam.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/gm.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/lfg-rocket.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/pump-it.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/lockin-coin.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/moon-rocket.webm"></video></div>
+          <div class="sticker"><video muted loop autoplay playsinline preload="metadata" src="assets/stickers/be-smart-buy-now.webm"></video></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="shell">
+        <div class="cta-box">
+          <div class="cta-content">
+            <div class="eyebrow">ARE YOU STILL READING?</div>
+            <h2>JUST <span>LOCK IN.</span></h2>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="https://dedust.io/coins/EQAmAb3d7dEP8fMWOf42Jzxu8DyG_fCK9ndfLs1XhjlN5HU9" target="_blank" rel="noopener noreferrer">BUY $LOCKIN</a>
+              <a class="btn" href="https://t.me/lockin_og" target="_blank" rel="noopener noreferrer">JOIN TELEGRAM</a>
+              <a class="btn" href="https://x.com/lockin_comunity" target="_blank" rel="noopener noreferrer">FOLLOW X</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-row">
+        <div class="footer-left">
+          <img src="assets/logo/logo.png" alt="" />
+          <span>LOCKIN COMMUNITY / TON</span>
+        </div>
+
+        <div>
+          <div class="footer-links">
+            <a href="https://t.me/lockin_og" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+            <a href="https://x.com/lockin_comunity" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://dexscreener.com/ton/eqckj5g4vydzis-1xd13q8kxgzt7-xx_zpbky7sd3j-96xqj" target="_blank" rel="noopener noreferrer">DEXSCREENER</a>
+            <a href="https://lockin.cash" target="_blank" rel="noopener noreferrer">OFFICIAL LOCKIN</a>
+            <a href="https://github.com/GramLeek/LOCKIN" target="_blank" rel="noopener noreferrer">SOURCE</a>
+          </div>
+          <div class="disclaimer">
+            Community-built website. $LOCKIN is a community token and this site does not represent financial advice.
+          </div>
+
+          <div class="creator-credit">
+            <a href="https://gramleek.xyz" target="_blank" rel="noopener noreferrer" aria-label="Built by GramLeek $LEEK">
+              <img src="https://raw.githubusercontent.com/GramLeek/Assets/main/Logo.png" alt="GramLeek logo" />
+              <span>BUILT BY GRAMLEEK · $LEEK</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">CONTRACT COPIED</div>
+
+  <script>
+    const TOKEN_ADDRESS = "EQAmAb3d7dEP8fMWOf42Jzxu8DyG_fCK9ndfLs1XhjlN5HU9";
+    const DEX_API = `https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`;
+
+    const els = {
+      price: document.getElementById("price"),
+      marketCap: document.getElementById("marketCap"),
+      capType: document.getElementById("capType"),
+      liquidity: document.getElementById("liquidity"),
+      change24: document.getElementById("change24"),
+      tx24: document.getElementById("tx24"),
+      liveStatus: document.getElementById("liveStatus")
+    };
+
+    function money(value, compact = true) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return "—";
+
+      if (!compact) {
+        if (n >= 1) return "$" + n.toLocaleString("en-US", { maximumFractionDigits: 4 });
+        if (n >= 0.01) return "$" + n.toFixed(4);
+        if (n >= 0.0001) return "$" + n.toFixed(6);
+        return "$" + n.toPrecision(4);
+      }
+
+      return "$" + new Intl.NumberFormat("en-US", {
+        notation: "compact",
+        compactDisplay: "short",
+        maximumFractionDigits: 2
+      }).format(n);
+    }
+
+    async function loadMarket() {
+      try {
+        els.liveStatus.textContent = "SYNCING";
+        const response = await fetch(DEX_API, { cache: "no-store" });
+        if (!response.ok) throw new Error("Market request failed");
+
+        const data = await response.json();
+        const pairs = (data.pairs || [])
+          .filter(pair => pair.chainId === "ton")
+          .sort((a, b) => (Number(b?.liquidity?.usd) || 0) - (Number(a?.liquidity?.usd) || 0));
+
+        const pair = pairs[0];
+        if (!pair) throw new Error("No TON pair found");
+
+        els.price.textContent = money(pair.priceUsd, false);
+
+        const cap = Number(pair.marketCap) || Number(pair.fdv);
+        els.marketCap.textContent = money(cap);
+        els.capType.textContent = pair.marketCap ? "MARKET CAP" : "FDV";
+
+        els.liquidity.textContent = money(pair?.liquidity?.usd);
+
+        const change = Number(pair?.priceChange?.h24);
+        if (Number.isFinite(change)) {
+          els.change24.textContent = `${change >= 0 ? "+" : ""}${change.toFixed(2)}%`;
+          els.change24.classList.toggle("positive", change >= 0);
+          els.change24.classList.toggle("negative", change < 0);
+        } else {
+          els.change24.textContent = "—";
+        }
+
+        const buys = Number(pair?.txns?.h24?.buys);
+        const sells = Number(pair?.txns?.h24?.sells);
+        els.tx24.textContent =
+          Number.isFinite(buys) && Number.isFinite(sells)
+            ? `BUYS ${buys.toLocaleString()} / SELLS ${sells.toLocaleString()}`
+            : "BUYS / SELLS —";
+
+        els.liveStatus.textContent = "LIVE · DEXSCREENER";
+      } catch (error) {
+        console.warn(error);
+        els.liveStatus.textContent = "MARKET DATA OFFLINE";
+      }
+    }
+
+    document.querySelectorAll("[data-copy-ca]").forEach(button => {
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(TOKEN_ADDRESS);
+          const toast = document.getElementById("toast");
+          toast.classList.add("show");
+          button.textContent = "COPIED";
+          setTimeout(() => {
+            toast.classList.remove("show");
+            button.textContent = "COPY";
+          }, 1600);
+        } catch {
+          window.prompt("Copy contract address:", TOKEN_ADDRESS);
+        }
+      });
+    });
+
+    const videos = [...document.querySelectorAll(".sticker video")];
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      }, { rootMargin: "160px 0px", threshold: 0.02 });
+
+      videos.forEach(video => observer.observe(video));
+    }
+
+
+    const flowSteps = [...document.querySelectorAll(".flow-step")];
+    const appScreen = document.getElementById("appScreen");
+    const screenStep = document.getElementById("screenStep");
+    const screenTitle = document.getElementById("screenTitle");
+    const screenCopy = document.getElementById("screenCopy");
+    const screenNote = document.getElementById("screenNote");
+
+    flowSteps.forEach(step => {
+      step.addEventListener("click", () => {
+        flowSteps.forEach(item => item.classList.remove("active"));
+        step.classList.add("active");
+
+        if (screenStep) screenStep.textContent = `STEP / ${step.dataset.step}`;
+        if (screenTitle) screenTitle.textContent = step.dataset.title;
+        if (screenCopy) screenCopy.textContent = step.dataset.copy;
+        if (screenNote) screenNote.textContent = step.dataset.note;
+
+        if (appScreen) {
+          appScreen.style.opacity = "0";
+          appScreen.style.transform = "scale(.985)";
+          setTimeout(() => {
+            appScreen.src = step.dataset.image;
+            appScreen.alt = `Lockin app — ${step.dataset.title}`;
+            appScreen.style.opacity = "1";
+            appScreen.style.transform = "scale(1)";
+          }, 120);
+        }
+      });
+    });
+
+    if (appScreen) {
+      appScreen.style.transition = "opacity .18s ease, transform .18s ease";
+    }
+
+
+    loadMarket();
+    setInterval(loadMarket, 30000);
+  </script>
+</body>
+</html>
